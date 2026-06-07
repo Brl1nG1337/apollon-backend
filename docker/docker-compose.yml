@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: apollon_postgres
+    environment:
+      POSTGRES_USER: apollon_user
+      POSTGRES_PASSWORD: apollon_password
+      POSTGRES_DB: apollon_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: apollon_mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    # Wir mounten die lokale Config-Datei direkt in den Container
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
