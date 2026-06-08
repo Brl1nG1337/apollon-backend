@@ -3,7 +3,7 @@ package de.apollon.backend.controller;
 import de.apollon.backend.model.devices.ApollonDevice;
 import de.apollon.backend.model.dto.DeviceDto;
 import de.apollon.backend.model.enums.ApollonDeviceStatus;
-import de.apollon.backend.repository.DeviceRepository;
+import de.apollon.backend.repository.ApollonDeviceRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class DeviceController {
 
     @Autowired
-    private DeviceRepository deviceRepository;
+    private ApollonDeviceRepository deviceRepository;
 
     @PostMapping
     public ResponseEntity<ApollonDevice> createDevice(@Valid @RequestBody DeviceDto dto) {

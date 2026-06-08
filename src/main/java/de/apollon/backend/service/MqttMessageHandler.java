@@ -1,6 +1,6 @@
 package de.apollon.backend.service;
 
-import de.apollon.backend.repository.DeviceFeatureRepository;
+import de.apollon.backend.repository.ApollonDeviceFeatureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.mqtt.support.MqttHeaders;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class MqttMessageHandler {
 
     @Autowired
-    private DeviceFeatureRepository featureRepository;
+    private ApollonDeviceFeatureRepository featureRepository;
 
     @ServiceActivator(inputChannel = "mqttInputChannel")
     @Transactional

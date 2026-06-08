@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface DeviceFeatureRepository extends JpaRepository<ApollonDeviceFeature, Long> {
+public interface ApollonDeviceFeatureRepository extends JpaRepository<ApollonDeviceFeature, Long> {
     Optional<ApollonDeviceFeature> findByStateTopic(String stateTopic);
 }
