@@ -1,12 +1,12 @@
 package de.apollon.backend.repository;
 
-import de.apollon.backend.model.DeviceFeature;
+import de.apollon.backend.model.devices.ApollonDeviceFeature;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface DeviceFeatureRepository extends JpaRepository<DeviceFeature, Long> {
-    Optional<DeviceFeature> findByStateTopic(String stateTopic);
+public interface DeviceFeatureRepository extends JpaRepository<ApollonDeviceFeature, Long> {
+    Optional<ApollonDeviceFeature> findByStateTopic(String stateTopic);
 }

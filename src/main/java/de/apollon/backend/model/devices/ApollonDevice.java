@@ -1,6 +1,6 @@
-package de.apollon.backend.model;
+package de.apollon.backend.model.devices;
 
-import de.apollon.backend.model.enums.DeviceStatus;
+import de.apollon.backend.model.enums.ApollonDeviceStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Device {
+public class ApollonDevice {
 
     @Id
     @Column(name = "mac_address", length = 17)
@@ -23,9 +23,9 @@ public class Device {
     private LocalDateTime lastSeen;
 
     @Enumerated(EnumType.STRING)
-    private DeviceStatus status;
+    private ApollonDeviceStatus status;
 
     // Ein ESP32 kann viele Sensoren/Aktoren haben
     @OneToMany(mappedBy = "device", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<DeviceFeature> features;
+    private List<ApollonDeviceFeature> features;
 }

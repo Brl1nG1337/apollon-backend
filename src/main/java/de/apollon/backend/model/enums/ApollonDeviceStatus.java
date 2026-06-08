@@ -1,6 +1,6 @@
 package de.apollon.backend.model.enums;
 
-public enum DeviceStatus {
+public enum ApollonDeviceStatus {
     ONLINE,
     OFFLINE
 }

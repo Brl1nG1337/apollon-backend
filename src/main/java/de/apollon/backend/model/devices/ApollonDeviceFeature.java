@@ -1,6 +1,7 @@
-package de.apollon.backend.model;
+package de.apollon.backend.model.devices;
 
-import de.apollon.backend.model.enums.FeatureType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import de.apollon.backend.model.enums.ApollonFeatureType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor // Pflicht für JPA
 @AllArgsConstructor // Hilfreich für Builder
 @Builder // Macht das Erstellen von Testdaten viel einfacher
-public class DeviceFeature {
+public class ApollonDeviceFeature {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +26,7 @@ public class DeviceFeature {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private FeatureType type;
+    private ApollonFeatureType type;
 
     // --- Kommunikation ---
     // Wir machen diese Unique, damit wir sie effizient per Repository finden können
@@ -43,6 +44,7 @@ public class DeviceFeature {
 
     // --- Verknüpfung ---
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "device_id", nullable = false)
-    private Device device;
+    @JoinColumn(name = "device_id", nullable = false) // Das wird in der DB die Spalte für die MAC-Adresse
+    @JsonIgnoreProperties("features") // Verhindert die JSON-Endlosschleife!
+    private ApollonDevice device;
 }
